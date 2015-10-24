@@ -16,6 +16,8 @@ Gem::Specification.new do |gem|
   gem.files += Dir['spec/**/*.rb']
   gem.test_files = Dir['spec/**/*.rb']
 
+  gem.add_dependency 'module_builder', '~> 0.1'
+
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'rspec', '~> 3.0'
   gem.add_development_dependency 'rspec-pending_for', '~> 0.1'
