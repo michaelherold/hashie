@@ -527,6 +527,29 @@ describe ConditionallyRequiredTest do
   end
 end
 
+class DashWithoutRequiredTest < Hashie::Dash
+  property :foo
+  property :bar
+end
+
+RSpec.describe DashWithoutRequiredTest do
+  describe '#to_h' do
+    it 'does not eliminate keys with a nil value' do
+      subject = described_class.new(foo: 'hi', bar: nil)
+
+      expect(subject.to_h).to eq(foo: 'hi', bar: nil)
+    end
+  end
+
+  describe '#to_hash' do
+    it 'eliminates keys with a nil value' do
+      subject = described_class.new(foo: 'hi', bar: nil)
+
+      expect(subject.to_hash).to eq(foo: 'hi')
+    end
+  end
+end
+
 class MixedPropertiesTest < Hashie::Dash
   property :symbol
   property 'string'
